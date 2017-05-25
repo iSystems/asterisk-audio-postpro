@@ -1,0 +1,25 @@
+[auphonic]
+clientid= << auphonic application oauth2 clientid >>
+clientsecret= << auphonic application oauth2 secret >>
+accesstoken=   << auphonic access token >>
+preset= << auphonic preset uuid >>
+webhook= << webhook url >>
+
+[paths]
+spooldir=spool
+
+[server]
+listen_address=0.0.0.0
+listen_port=8088
+loglevel=INFO
+
+[sox]
+fileformat_sln=-t raw -b 16 -e signed-integer -r 8000
+fileformat_sln16=-t raw -b 16 -e signed-integer -r 16000
+fileformat_wav=-t wav
+
+[output]
+fileformats=sln sln16 wav
+
+[process]
+loglevel=INFO

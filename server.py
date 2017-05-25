@@ -279,6 +279,7 @@ class WebhookServerProtocol(asyncio.Protocol):
             soxoutputfiles.append(soxoutputfile)
             try:
                 os.replace(soxoutputfile, '%s.%s' % (originalpath, fileformat))
+                logging.debug('moving/replacing %s -> %s.%s' (soxoutputfile, originalpath, fileformat))
             except OSError as err:
                 logging.error('Failed to move processed file to original file location')
                 return self.response(500, 'Internal Server Error', message='error processing production')

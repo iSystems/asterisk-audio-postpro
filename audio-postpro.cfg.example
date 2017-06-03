@@ -16,6 +16,12 @@ loglevel=INFO
 [sox]
 fileformat_sln=-t raw -b 16 -e signed-integer -r 8000
 fileformat_sln16=-t raw -b 16 -e signed-integer -r 16000
+fileformat_sln24=-t raw -b 16 -e signed-integer -r 24000
+fileformat_sln32=-t raw -b 16 -e signed-integer -r 32000
+fileformat_sln44=-t raw -b 16 -e signed-integer -r 44100
+fileformat_sln48=-t raw -b 16 -e signed-integer -r 48000
+fileformat_sln96=-t raw -b 16 -e signed-integer -r 96000
+fileformat_sln192=-t raw -b 16 -e signed-integer -r 192000
 fileformat_wav=-t wav
 
 [output]

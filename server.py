@@ -13,7 +13,7 @@ import os.path
 import logging
 import subprocess
 
-# based on c3nav-commitid-suggest by nomoketo
+# based on c3nav-commitid-suggest by codingcatgirl
 from Auphonic import AuphonicProduction
 
 config = configparser.RawConfigParser()

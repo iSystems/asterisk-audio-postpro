@@ -1,20 +1,23 @@
-import json
+import configparser
+import os
 import getpass
 import requests
 from requests.auth import HTTPBasicAuth
 
 auphonic_oauth_url = 'https://auphonic.com/oauth2/token/'
 
-try:
-    config = json.load(open('config.json'))
-    auphonic_clientid = config['auphonic']['clientid']
-    auphonic_clientsecret = config['auphonic']['clientsecret']
-except KeyError as err:
+config = configparser.RawConfigParser()
+
+config.read([os.path.join(os.environ.get('AST_CONFIG_DIR', '/etc/asterisk'), 'audio-postpro.cfg'),
+             os.path.expanduser('~/.audio-postpro.cfg'),
+             os.environ.get('FAX2MAIL_CONFIG', 'audio-postpro.cfg')],
+            encoding='utf-8')
+
+auphonic_clientid = config.get('auphonic', 'clientid', fallback=None)
+auphonic_clientsecret = config.get('auphonic', 'clientsecret', fallback=None)
+
+if auphonic_clientid is None or auphonic_clientsecret is None:
     raise Exception('unable to load auphonic OAuth2 client secrets from config')
-except json.JSONDecodeError as err:
-    raise Exception('could not parse config file')
-except FileNotFoundError as err:
-    raise Exception('config file not found')
 
 auphonic_username = input('Auphonic Username:')
 auphonic_password = getpass.getpass('Auphonic Password:')
